@@ -3,13 +3,21 @@ export default function GradientBackground() {
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       {/* Gold orb - top right */}
       <div
-        className="absolute -top-20 -right-20 w-96 h-96 bg-gold/20 rounded-full blur-3xl animate-drift"
+        className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full animate-drift"
+        style={{
+          background: "radial-gradient(circle, rgba(184, 138, 74, 0.4) 0%, rgba(184, 138, 74, 0.1) 50%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
         aria-hidden="true"
       />
 
-      {/* Blue orb - bottom left */}
+      {/* Blue orb - left side */}
       <div
-        className="absolute -bottom-32 -left-32 w-80 h-80 bg-blue-900/30 rounded-full blur-3xl animate-drift-reverse"
+        className="absolute top-1/3 -left-10 w-[450px] h-[450px] rounded-full animate-drift-reverse"
+        style={{
+          background: "radial-gradient(circle, rgba(30, 58, 138, 0.4) 0%, rgba(30, 58, 138, 0.15) 50%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
         aria-hidden="true"
       />
 
