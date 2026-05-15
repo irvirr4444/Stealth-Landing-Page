@@ -83,6 +83,7 @@ export default function LeadForm() {
       }
 
       setSubmitted(true);
+      window.dispatchEvent(new Event("lead-submitted"));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
