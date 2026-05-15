@@ -5,6 +5,9 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { name, phone, email, utm_source, utm_medium, utm_campaign } = body;
+    const qrSource = /^QR=[1-5]$/.test(body.qr_source)
+      ? body.qr_source
+      : "general";
 
     if (!name || !phone || !email) {
       return NextResponse.json(
@@ -33,6 +36,7 @@ export async function POST(request: NextRequest) {
       utm_source: utm_source || null,
       utm_medium: utm_medium || null,
       utm_campaign: utm_campaign || null,
+      qr_source: qrSource,
     });
 
     if (error) {

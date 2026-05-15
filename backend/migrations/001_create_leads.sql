@@ -8,7 +8,11 @@ CREATE TABLE IF NOT EXISTS leads (
   ip TEXT,
   utm_source TEXT,
   utm_medium TEXT,
-  utm_campaign TEXT
+  utm_campaign TEXT,
+  qr_source TEXT NOT NULL DEFAULT 'general',
+  CONSTRAINT leads_qr_source_check CHECK (
+    qr_source IN ('QR=1', 'QR=2', 'QR=3', 'QR=4', 'QR=5', 'general')
+  )
 );
 
 -- Index for quick lookups by email (avoid duplicates)

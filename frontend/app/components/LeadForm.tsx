@@ -27,12 +27,16 @@ export default function LeadForm() {
   const [utmSource, setUtmSource] = useState("");
   const [utmMedium, setUtmMedium] = useState("");
   const [utmCampaign, setUtmCampaign] = useState("");
+  const [qrSource, setQrSource] = useState("general");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const pathSource = window.location.pathname.replace("/", "");
+
     setUtmSource(params.get("utm_source") || "");
     setUtmMedium(params.get("utm_medium") || "");
     setUtmCampaign(params.get("utm_campaign") || "");
+    setQrSource(/^QR=[1-5]$/.test(pathSource) ? pathSource : "general");
   }, []);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +73,7 @@ export default function LeadForm() {
           utm_source: utmSource,
           utm_medium: utmMedium,
           utm_campaign: utmCampaign,
+          qr_source: qrSource,
         }),
       });
 
