@@ -7,11 +7,11 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col">
+    <main className="relative flex flex-col min-h-screen">
       <GradientBackground />
       <TopBar />
 
-      <div className="flex-1 flex flex-col justify-center px-6 py-8 z-10 max-w-md mx-auto w-full">
+      <div className="flex flex-col px-6 py-8 z-10 max-w-md mx-auto w-full">
         <Hero />
         <HintStack />
         <LeadForm />
