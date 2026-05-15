@@ -12,9 +12,9 @@ The actual "backend" logic (API routes) lives in `frontend/app/api/` since we're
    - `phone` (text, not null)
    - `email` (text, not null)
    - `created_at` (timestamptz, default: now())
-   - `ip` (text)
    - `utm_source` (text)
    - `utm_medium` (text)
    - `utm_campaign` (text)
+   - `qr_source` (text, not null, default: general)
 
 2. Or run the migration SQL in `migrations/001_create_leads.sql`

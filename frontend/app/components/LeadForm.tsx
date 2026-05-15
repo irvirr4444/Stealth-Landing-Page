@@ -148,7 +148,18 @@ export default function LeadForm() {
         disabled={submitting}
         className="w-full py-4 px-8 bg-gold text-navy font-semibold text-lg rounded-lg hover:bg-gold/90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {submitting ? "Submitting..." : "Get early access"}
+        {submitting ? (
+          <span className="inline-flex items-baseline justify-center gap-1">
+            <span>Submitting</span>
+            <span className="inline-flex gap-0.5" aria-hidden="true">
+              <span className="inline-block animate-[dot-wave_1.1s_ease-in-out_infinite]">.</span>
+              <span className="inline-block animate-[dot-wave_1.1s_ease-in-out_0.15s_infinite]">.</span>
+              <span className="inline-block animate-[dot-wave_1.1s_ease-in-out_0.3s_infinite]">.</span>
+            </span>
+          </span>
+        ) : (
+          "Get early access"
+        )}
       </button>
     </form>
   );

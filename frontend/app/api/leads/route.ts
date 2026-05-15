@@ -24,27 +24,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const forwardedFor = request.headers.get("x-forwarded-for");
-    const realIp = request.headers.get("x-real-ip");
-    const ip = forwardedFor?.split(",")[0]?.trim() || realIp || null;
-
-    const { error } = await supabase.from("leads").insert({
+    const lead = {
       name,
       phone,
       email,
-      ip,
       utm_source: utm_source || null,
       utm_medium: utm_medium || null,
       utm_campaign: utm_campaign || null,
       qr_source: qrSource,
-    });
+    };
+
+    const { error } = await supabase.from("leads").insert(lead);
 
     if (error) {
       console.error("Supabase error:", error);
       return NextResponse.json(
-        { error: "Failed to save lead" },
+        { error: "Something went wrong. Please try again." },
         { status: 500 }
       );
+    }
+
+    if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
+      try {
+        const sheetsResponse = await fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(lead),
+        });
+
+        if (!sheetsResponse.ok) {
+          console.error("Google Sheets webhook failed:", sheetsResponse.status);
+        }
+      } catch (sheetsError) {
+        console.error("Google Sheets webhook error:", sheetsError);
+      }
     }
 
     return NextResponse.json({ success: true });

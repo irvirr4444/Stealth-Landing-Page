@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS leads (
   phone TEXT NOT NULL,
   email TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT now(),
-  ip TEXT,
   utm_source TEXT,
   utm_medium TEXT,
   utm_campaign TEXT,

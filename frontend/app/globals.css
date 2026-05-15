@@ -100,3 +100,14 @@
     opacity: 0;
   }
 }
+
+@keyframes dot-wave {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  40% {
+    transform: translateY(-0.22em);
+    opacity: 1;
+  }
+}
